@@ -82,7 +82,7 @@ Developed prompts to help plan complete travel itineraries efficiently, includin
 ---
 
 ## ⭐ Assignment 5  
-### Part 1 — **AI-Driven Development (AIDD): The 7 Core Pillars**
+### Part 1: **AI-Driven Development (AIDD): The 7 Core Pillars**
 
 **Task:**  
 **1. Watch and Summarize:**
@@ -94,7 +94,7 @@ Watch the video “AI-Driven Development (AIDD): The 7 Core Pillars” by Sir Zi
 
 ---
 
-### Part 2 — **Practical Task: Simple Calculator using GEMINI CLI**
+### Part 2: **Practical Task: Simple Calculator using GEMINI CLI**
 
 **Task:**  
 **2. Practical Task:**
