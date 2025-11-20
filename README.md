@@ -41,9 +41,9 @@ Each assignment includes the **task**, and **LinkedIn post link**.
 - Complete any one of the following Prompt Design Projects:
 
 **Options:**  
-1️⃣ Personal Assistant: Create prompts for scheduling and email drafting.  
-2️⃣ Content Creation: Develop templates for different types of writing. 
-3️⃣ Data Analysis: Build prompts for interpreting datasets. 
+1️⃣ Personal Assistant: Create prompts for scheduling and email drafting.
+2️⃣ Content Creation: Develop templates for different types of writing.
+3️⃣ Data Analysis: Build prompts for interpreting datasets.
 4️⃣ Code Review: Create prompts for code analysis and improvement.  
 
 
