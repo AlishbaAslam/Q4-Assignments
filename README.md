@@ -90,7 +90,7 @@ Watch the video “AI-Driven Development (AIDD): The 7 Core Pillars” by Sir Zi
 
 
 **LinkedIn Post:**  
-👉 *Paste link here*
+👉 *[AIDD: 7 Core Pillars Summary](https://www.linkedin.com/posts/alishba-khan-721152286_six-step-prompting-framework-activity-7392684144344059904-tLNx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVu0okBD8EQ6scYcsuYrMhQI4QdMlpgn4E)*
 
 ---
 
@@ -101,7 +101,7 @@ Watch the video “AI-Driven Development (AIDD): The 7 Core Pillars” by Sir Zi
 Create a simple calculator using GEMINI CLI.
 
 **LinkedIn Post:**  
-👉 *Paste link here*
+👉 *[Gemini CLI Calculator](https://www.linkedin.com/posts/alishba-khan-721152286_six-step-prompting-framework-activity-7392684144344059904-tLNx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVu0okBD8EQ6scYcsuYrMhQI4QdMlpgn4E)*
 
-## 📬 Connect With Me  
-**LinkedIn:** *Add your profile link here*
+## 📬 Connect With Me:  
+**LinkedIn:** *[Alishba Khan](https://www.linkedin.com/in/alishba-khan-721152286/)*
