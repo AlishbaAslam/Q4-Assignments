@@ -65,13 +65,13 @@ Designed a set of prompts to help automate daily tasks like managing schedules, 
 Complete any one of the following Advanced Application using the 6-Step Prompting Framework:
 
 **Categories:**  
-1️⃣ Personal: Meal planning, workout routines, travel itineraries.
-2️⃣ Professional: Business plans, marketing strategies, technical documentation.
-3️⃣ Creative: Content scripts, design briefs, storytelling frameworks.
-4️⃣ Educational: Study guides, research plans, learning curricula. 
+1. Personal: Meal planning, workout routines, travel itineraries.
+2. Professional: Business plans, marketing strategies, technical documentation.
+3. Creative: Content scripts, design briefs, storytelling frameworks.
+4. Educational: Study guides, research plans, learning curricula. 
 
 **Selected Option:**
-1️⃣ Personal: Travel Itineraries.
+1. Personal: Travel Itineraries.
 
 **Description:**
 Developed prompts to help plan complete travel itineraries efficiently, including destination suggestions, daily schedules, activity recommendations, and budget-friendly options. The prompts are designed to make travel planning faster, organized, and personalized for different users.
@@ -85,8 +85,8 @@ Developed prompts to help plan complete travel itineraries efficiently, includin
 ### Part 1 — **AI-Driven Development (AIDD): The 7 Core Pillars**
 
 **Task:**  
-**1️⃣ Watch and Summarize:**
-- Watch the video “AI-Driven Development (AIDD): The 7 Core Pillars” by Sir Zia and create a LinkedIn post summarizing what you learned. 
+**1. Watch and Summarize:**
+Watch the video “AI-Driven Development (AIDD): The 7 Core Pillars” by Sir Zia and create a LinkedIn post summarizing what you learned. 
 
 
 **LinkedIn Post:**  
@@ -97,8 +97,8 @@ Developed prompts to help plan complete travel itineraries efficiently, includin
 ### Part 2 — **Practical Task: Simple Calculator using GEMINI CLI**
 
 **Task:**  
-**2️⃣ Practical Task:**
-- Create a simple calculator using GEMINI CLI.
+**2. Practical Task:**
+Create a simple calculator using GEMINI CLI.
 
 **LinkedIn Post:**  
 👉 *Paste link here*
