@@ -1,0 +1,7 @@
+2025-11-25,Expense,Food,fish,500000
+2025-11-25,Expense,Bills,Electricity bill,1700000
+2025-11-25,Expense,Health,Monthly check-up,1200000
+2025-11-28,Expense,Shopping,Online shopping,1000000
+2025-11-26,Income,Salary,Teaching,2000000
+2025-11-28,Income,Business,Online,1000000
+2025-11-28,Income,Other,Other,2000000
