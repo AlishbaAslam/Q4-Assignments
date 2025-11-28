@@ -3,3 +3,4 @@ questionary
 pandas
 plotly
 python-dotenv
+altair

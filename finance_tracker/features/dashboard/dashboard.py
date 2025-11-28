@@ -7,7 +7,7 @@ import os
 # Add the project root to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from features.transactions.transactions import get_transactions
+from features.transactions.data import get_transactions
 from features.budgets.budgets import get_budgets
 from datetime import datetime
 
