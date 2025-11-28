@@ -1,12 +1,6 @@
-import questionary
-from rich.console import Console
-from rich.table import Table
-from rich.progress_bar import ProgressBar
-from rich.panel import Panel
+import streamlit as st
+import pandas as pd
 from datetime import datetime
-
-# Create a console object
-console = Console()
 
 # Define the path to the budgets file
 BUDGETS_FILE = "database/budgets.txt"
@@ -56,26 +50,30 @@ def save_budget(category, amount):
 
 
 def set_budget():
-    """Sets a budget for a category."""
-    console.print("[bold blue]Setting a new budget...[/bold blue]")
+    """Sets a budget for a category using Streamlit widgets."""
+    st.subheader("🎯 Set a New Budget")
 
-    category = questionary.select(
+    category = st.selectbox(
         "Select a category:",
-        choices=["Food", "Transport", "Shopping", "Bills", "Entertainment", "Health", "Other"]
-    ).ask()
+        ["Food", "Transport", "Shopping", "Bills", "Entertainment", "Health", "Other"]
+    )
 
-    try:
-        amount_str = questionary.text("Enter the monthly budget amount:").ask()
-        amount = int(float(amount_str) * 100)  # Store amount in cents
-        if amount <= 0:
-            console.print("[bold red]Amount must be a positive number.[/bold red]")
+    amount_str = st.number_input(
+        "Enter the monthly budget amount:", 
+        min_value=0.0, 
+        step=0.01,
+        format="%.2f"
+    )
+
+    if st.button("Set Budget"):
+        if amount_str <= 0:
+            st.error("❌ Amount must be a positive number.")
             return
-    except ValueError:
-        console.print("[bold red]Invalid amount. Please enter a number.[/bold red]")
-        return
+        
+        amount = int(amount_str * 100)  # Store amount in cents
+        save_budget(category, amount)
+        st.success(f"✅ Budget for {category} set to ${amount_str:.2f} successfully!")
 
-    save_budget(category, amount)
-    console.print("[bold green]Budget set successfully![/bold green]")
 
 def view_budgets():
     """Displays the budget vs actual spending."""
@@ -83,19 +81,14 @@ def view_budgets():
     transactions = get_transactions()
 
     if not budgets:
-        console.print("[bold yellow]No budgets set. Please set a budget first.[/bold yellow]")
+        st.warning("⚠️ No budgets set. Please set a budget first.")
         return
 
-    table = Table(title="Budget vs Spending")
-    table.add_column("Category", style="cyan")
-    table.add_column("Budget", style="magenta")
-    table.add_column("Spent", style="yellow")
-    table.add_column("Remaining", style="green")
-    table.add_column("Utilization", style="blue")
-    table.add_column("Status", style="bold")
+    st.subheader("📊 Budget vs Spending")
 
     current_month = datetime.now().strftime("%Y-%m")
 
+    budget_data = []
     for category, budget_amount in budgets.items():
         spent_amount = sum(
             t["amount"] for t in transactions
@@ -107,26 +100,43 @@ def view_budgets():
         remaining_amount = budget_amount - spent_amount
         utilization = (spent_amount / budget_amount) * 100 if budget_amount > 0 else 0
 
-        status = ""
         if utilization < 70:
-            status = "[green]OK[/green]"
+            status = "✅ OK"
         elif 70 <= utilization <= 100:
-            status = "[yellow]Warning[/yellow]"
+            status = "⚠️ Warning"
         else:
-            status = "[red]Over[/red]"
+            status = "🔴 Over"
 
-        progress_bar = ProgressBar(total=100, completed=utilization, width=20)
+        budget_data.append({
+            "Category": category,
+            "Budget": f"${budget_amount / 100:.2f}",
+            "Spent": f"${spent_amount / 100:.2f}",
+            "Remaining": f"${remaining_amount / 100:.2f}",
+            "Utilization (%)": f"{utilization:.1f}%",
+            "Status": status
+        })
 
-        table.add_row(
-            category,
-            f"{budget_amount / 100:.2f}",
-            f"{spent_amount / 100:.2f}",
-            f"{remaining_amount / 100:.2f}",
-            progress_bar,
-            status
+    df = pd.DataFrame(budget_data)
+    st.dataframe(df, use_container_width=True, hide_index=True)
+
+    # Add progress bars for each category
+    st.subheader("Budget Utilization")
+    for category, budget_amount in budgets.items():
+        spent_amount = sum(
+            t["amount"] for t in transactions
+            if t["type"] == "Expense" 
+            and t["category"] == category
+            and t["date"].startswith(current_month)
         )
+        utilization = (spent_amount / budget_amount) * 100 if budget_amount > 0 else 0
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.write(f"**{category}**")
+            st.progress(min(utilization / 100, 1.0))
+        with col2:
+            st.write(f"{utilization:.1f}%")
 
-    console.print(table)
 
 def budget_summary():
     """Displays a summary of all budgets."""
@@ -134,7 +144,7 @@ def budget_summary():
     transactions = get_transactions()
 
     if not budgets:
-        console.print("[bold yellow]No budgets set. Please set a budget first.[/bold yellow]")
+        st.warning("⚠️ No budgets set. Please set a budget first.")
         return
 
     total_budget = sum(budgets.values())
@@ -157,26 +167,29 @@ def budget_summary():
     total_remaining = total_budget - total_spent
     overall_utilization = (total_spent / total_budget) * 100 if total_budget > 0 else 0
 
-    summary_text = (
-        f"Total Monthly Budget: [bold green]{total_budget / 100:.2f}[/bold green]\n"
-        f"Total Spent: [bold red]{total_spent / 100:.2f}[/bold red]\n"
-        f"Total Remaining: [bold green]{total_remaining / 100:.2f}[/bold green]\n"
-        f"Overall Utilization: {overall_utilization:.2f}%\n\n"
-    )
+    st.subheader("💰 Budget Summary")
+    
+    # Display metrics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Total Budget", f"${total_budget / 100:.2f}")
+    with col2:
+        st.metric("Total Spent", f"${total_spent / 100:.2f}")
+    with col3:
+        st.metric("Total Remaining", f"${total_remaining / 100:.2f}")
+    with col4:
+        st.metric("Utilization", f"{overall_utilization:.1f}%")
 
+    # Over budget warning
     if over_budget_categories:
-        summary_text += "[bold red]Categories Over Budget:[/bold red]\n"
+        st.error("🔴 **Categories Over Budget:**")
         for category in over_budget_categories:
-            summary_text += f"- {category}\n"
-        summary_text += "\n"
+            st.write(f"- {category}")
 
-    summary_text += "[bold blue]Recommendations:[/bold blue]\n"
-    summary_text += "- Review your spending in over-budget categories.\n"
-
-    console.print(
-        Panel(
-            summary_text,
-            title="Budget Summary",
-            expand=False
-        )
-    )
+    # Recommendations
+    st.info("""
+    **💡 Recommendations:**
+    - Review your spending in over-budget categories
+    - Consider adjusting budgets for next month
+    - Track daily expenses to stay within limits
+    """)
